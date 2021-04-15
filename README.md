@@ -1,24 +1,15 @@
-# wymusic
+网易云音乐
+仿照stu-master
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+缺点：
+css样式不熟练 不好看
+不能实时刷新 解决方法：加上监听 
+可以尝试在完善他的其他功能
 
-### Compiles and minifies for production
-```
-npm run build
-```
+改进:
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 将重复的部分改成组件 方便调用操作
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+加上手机版
+加上登录网易云模式

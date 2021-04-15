@@ -1,0 +1,48 @@
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+li,ul {
+  list-style-type: none;
+}
+
+.el-tabs__active-bar {
+  background-color: #c3473a;
+}
+
+.el-tabs__item:hover,
+.el-tabs__item.is-active {
+  color: #c3473a;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: #dd6d60;
+  color: #FFF;
+}
+
+li.number :hover{
+  color: #dd6d60;
+  cursor: default;
+}
