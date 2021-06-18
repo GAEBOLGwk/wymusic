@@ -8,14 +8,14 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <!-- 推荐歌单 -->
+    <!-- 热门推荐 -->
     <div class="recommend">
-      <h3 class="title">推荐歌单</h3>
+      <h3 class="title">热门推荐</h3>
       <div class="items">
-        <div class="item" v-for="(item, index) in list" :key="index" @click="touch(item.id)">
+        <div class="item" v-for="(item, index) in list" :key="index">
           <h6 class="desc">{{ item.copywriter }}</h6>
           <i class="el-icon-video-play"></i>
-          <img :src="item.picUrl" alt="" />
+          <img :src="item.picUrl" alt=""  @click="touch(item.id)" />
           <span>{{ item.name }}</span>
         </div>
       </div>
@@ -39,7 +39,7 @@
     <div class="mv">
       <h3 class="title">推荐MV</h3>
       <div class="items">
-        <div class="item" v-for="(item, index) in mv" :key="index">
+        <div class="item" v-for="(item, index) in mv" :key="index" @click="toMv(item.id)">
           <div class="mv-wrap">
             <img :src="item.picUrl" alt="" />
           </div>
@@ -61,6 +61,7 @@ export default {
       mv: [],
     };
   },
+
   created() {
     //轮播图
     axios.get("https://autumnfish.cn/banner").then((res) => {
@@ -86,6 +87,9 @@ export default {
     });
   },
   methods: {
+     toMv(id){
+       this.$router.push(`/video?id=${id}`)
+    },
     touch(id) {
       console.log(id);
       this.$router.push(`/singlepage?id=${id}`)
@@ -228,7 +232,6 @@ export default {
   margin-bottom: 40px;
   .items {
     display: flex;
-    
     width: 100%;
     position: relative;
     justify-content: space-around;
@@ -237,6 +240,7 @@ export default {
       cursor: pointer;
       flex:1;
       justify-content: space-around;
+      margin: 10px;
       .mv-wrap {
         position: relative;
         display: flex;

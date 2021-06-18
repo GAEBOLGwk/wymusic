@@ -65,7 +65,7 @@
       </div>
     </div>
     <!-- 总计文件数 -->
-    <div>{{ total }}</div>
+    <!-- <div>{{ total }}</div> -->
     <!-- 分页器 -->
     <el-pagination
       background
@@ -174,6 +174,9 @@ export default {
   }
 }
 
+span.item-tag.active{
+  color: #dd6d60;
+}
 .tab-bar {
   display: flex;
   width: 100%;
@@ -181,9 +184,11 @@ export default {
   justify-content: center;
   align-items: center;
   // 这里由于是局部原因active无法使用
-  .item-tag .active {
-      color: #dd6d60;
-    }
+  // .item-tag .active {
+  //     color: #dd6d60;
+  // background-color: #fcf6f5;
+  // border-radius: 20px;
+  //   }
   .item-tag {
     margin-right: 20px;
     color: gray;

@@ -37,20 +37,19 @@
               class="el-table__row"
               v-for="(item, index) in detail.tracks"
               :key="index"
-              @click="play(item.id)"
             >
               <td>{{ index + 1 }}</td>
               <td>
                 <div class="img-wrap">
                   <img :src="item.al.picUrl" alt="" />
-                  <span class="el-icon-video-play"></span>
+                  <span class="el-icon-video-play" @click="play(item.id)" ></span>
                 </div>
               </td>
               <td>
                 <div class="song-wrap">
                   <div class="name-wrap">
                     <span>{{ item.name }}</span>
-                    <span class="el-icon-video-camera"></span>
+                    <span v-if="item.mv!=0"  class="el-icon-video-camera" @click="toMv(item.mv)"></span>
                   </div>
                   <span></span>
                 </div>
@@ -79,7 +78,7 @@
                   <span class="name">{{ item.user.nickname }}：</span>
                   <span class="comment">{{ item.content }}</span>
                 </div>
-                <span class="date">{{ item.time }}</span>
+                <span class="date">{{ item.time|dateFormat }}</span>
               </div>
             </div>
           </div>
@@ -121,7 +120,7 @@ export default {
         params: { limit: 10, id: this.$route.query.id },
       })
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         this.detail = res.data.playlist;
         let arr = this.detail.tracks;
 
@@ -140,6 +139,7 @@ export default {
         }
       });
     this.comment()
+    this.getmv()
   },
   methods: {
     comment() {
@@ -153,7 +153,7 @@ export default {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.comments = res.data.comments;
         this.total = res.data.total;
 
@@ -186,12 +186,38 @@ export default {
           // console.log(res)
           let url = res.data.data[0].url
           // this.$emit('play', this.playUrl)
-          console.log(url);
+          // console.log(url);
           // console.log(this.$parent.musicUrl)
           // 设置给父组件的 播放地址
           this.$parent.musicUrl = url
         })
     },
+
+     toMv(id){
+       this.$router.push(`/video?id=${id}`)
+    },
+    getmv() {
+      // 最新音乐
+      axios
+        .get("https://autumnfish.cn/mv/all", {
+          params: {
+            area: this.area,
+            type: this.type,
+            order: this.order,
+            limit: this.limit,
+            offset: (this.page - 1) * this.limit,
+          },
+        })
+        .then((res) => {
+          //   console.log(res);
+          this.mvlist = res.data.data;
+        //  这里和下面的区别是什么 区别在于判断总数 this.total = res.data.count;
+          if(res.data.count){
+          this.total=res.data.count
+          }
+        });
+    },
+
   },
 };
 </script>

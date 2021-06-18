@@ -175,6 +175,10 @@ export default {
   text-align: center;
 }
 
+span.title.active{
+  color: #dd6d60;
+}
+
 .items{
     display: flex;
     flex-wrap: wrap;

@@ -14,15 +14,15 @@
                         <span slot="title">发现音乐</span>
                     </el-menu-item>
                     <el-menu-item index="/playlist">
-                         <i class="el-icon-menu"></i>
+                         <i class="el-icon-set-up"></i>
                         <span slot="title">推荐歌单</span>
                     </el-menu-item>
                      <el-menu-item index="/newmusic">
-                        <i class="el-icon-picture"></i>
+                        <i class="el-icon-service"></i>
                         <span slot="title">最新音乐</span>
                     </el-menu-item>
                      <el-menu-item index="/newvideo">
-                        <i class="el-icon-s-promotion"></i>
+                        <i class="el-icon-video-camera"></i>
                         <span slot="title">最新MV</span>
                     </el-menu-item>
                 </el-menu>

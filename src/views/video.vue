@@ -68,7 +68,7 @@
                   <span class="name">{{item.beReplied[0].user.nickname}}：</span>
                   <span class="comment">{{item.beReplied[0].content}}</span>
                 </div>
-              <div class="date">{{item.time}}</div>
+              <div class="date">{{item.time | dateFormat }}</div>
             </div>
           </div>
         
@@ -137,8 +137,9 @@ export default {
       mvs:[]
     };
   },
+
   created(){
-    //mv详情
+      //mv详情
      axios({
       url:'https://autumnfish.cn/mv/url',
       method:'get',
@@ -170,7 +171,7 @@ export default {
         offset:(this.page-1)*this.limit
       }
     }).then(res => {
-      //console.log(res);
+      console.log(res);
       this.hotComments=res.data.hotComments;
       this.hotTotal=this.hotComments.length;
       this.comments=res.data.comments;
@@ -184,7 +185,7 @@ export default {
         mvid:this.$route.query.id
       }
     }).then(res => {
-      console.log(res);
+      // console.log(res);
       this.mvs=res.data.mvs;
       for(let i=0;i<this.mvs.length;i++){
           if(this.mvs[i].playCount>100000){
@@ -209,7 +210,8 @@ export default {
     toMv(id){
       this.$router.push(`/video?id=${id}`)
     },
-     getMvList(){
+
+    getMvList(){
      axios({
       url:' https://autumnfish.cn/comment/mv',
       method:'get',
@@ -228,8 +230,10 @@ export default {
     //   console.log(`当前页: ${val}`);
       this.page=val;
       this.getMvList()
-    }
+    },
+
   }
+
 };
 </script>
 
@@ -245,7 +249,6 @@ export default {
         /* border: 0 solid white ; */
     }
     .video-wrap video{
-        width: 100%;
         height: 100%;
         border-radius: 10px;
     }

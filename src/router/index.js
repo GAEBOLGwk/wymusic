@@ -31,6 +31,10 @@ const routes = [
   {
     path:'/result',
     component: ()=>import('@/views/result')
+  },
+  {
+    path:'/newmusic',
+    component: ()=>import('@/views/newmusic')
   }
 
 ]
