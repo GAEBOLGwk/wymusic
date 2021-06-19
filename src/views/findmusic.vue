@@ -51,7 +51,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import {get} from "@/utils/axios";
+import axios from "axios"
 export default {
   data() {
     return {
@@ -64,25 +65,19 @@ export default {
 
   created() {
     //轮播图
-    axios.get("https://autumnfish.cn/banner").then((res) => {
-      // console.log(res);
+    get("banner",{}).then((res) => {
       this.banners = res.data.banners;
     });
     // 推荐歌单
-    axios
-      .get("https://autumnfish.cn/personalized", {params:{ limit: 10 }})
-      .then((res) => {
-        // console.log(res);
+    get("personalized", {limit:10}).then((res) => {
         this.list = res.data.result;
       });
     // 最新音乐
-    axios.get("https://autumnfish.cn/personalized/newsong").then((res) => {
-      // console.log(res);
+    get("personalized/newsong").then((res) => {
       this.songs = res.data.result;
     });
     // 最新MV
-    axios.get("https://autumnfish.cn/personalized/mv").then((res) => {
-      // console.log(res);
+    get("personalized/mv").then((res) => {
       this.mv = res.data.result;
     });
   },
@@ -102,11 +97,9 @@ export default {
             id 
           }
         }).then(res => {
-          // console.log(res)
           let url = res.data.data[0].url
           // this.$emit('play', this.playUrl)
           console.log(url);
-          // console.log(this.$parent.musicUrl)
           // 设置给父组件的 播放地址
           this.$parent.musicUrl = url
         })
