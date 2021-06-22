@@ -54,7 +54,8 @@ export default {
   justify-content: space-between;
   padding: 0 20px;
   background-color: #f9f9f9;
-  width: 100%;
+  width: 100vw;
+  box-sizing: border-box;
 }
 .left-top {
   display: flex;

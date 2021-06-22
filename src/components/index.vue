@@ -54,6 +54,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media only screen and (max-width:850px),
+only screen and (max-device-width:850px) and(min-device-width:500px){
+    .nav{
+    width: 100px !important;
+    }
+    i{
+      display: none !important;
+    }
+}
+
+
 .music{
   width: 100%;
 }
@@ -66,8 +77,7 @@ span{
     left: 0;
     right: 0;
     bottom: 60px;
-    position: fixed;
-      
+    position: fixed;  
 }
 .nav{
     background-color: #ededed;

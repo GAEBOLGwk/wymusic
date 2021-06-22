@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path:'/playlist',
-    component: ()=>import('@/views/playlist')
+    component: ()=>import('@/components/playlist')
   },
   {
     path:'/singlepage',
@@ -34,7 +34,7 @@ const routes = [
   },
   {
     path:'/newmusic',
-    component: ()=>import('@/views/newmusic')
+    component: ()=>import('@/components/newmusic')
   }
 
 ]
@@ -45,7 +45,8 @@ const originalPush = VueRouter.prototype.push
 }
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode:"history"//去掉‘#’
 })
 
 export default router

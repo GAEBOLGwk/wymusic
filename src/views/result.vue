@@ -40,7 +40,7 @@
           </tbody>
         </table>
       </el-tab-pane>
-      <el-tab-pane label="歌单" name="lists">
+      <!-- <el-tab-pane label="歌单" name="lists">
         <div class="items">
           <div
             class="item"
@@ -83,7 +83,7 @@
             </div>
           </div>
         </div>
-      </el-tab-pane>
+      </el-tab-pane> -->
     </el-tabs>
 
     <!-- 分页器 -->
@@ -105,7 +105,6 @@
 import axios from "axios";
 export default {
   name: "result",
-   
   data() {
     return {
       activeIndex: "songs",
@@ -117,14 +116,14 @@ export default {
       playList: [],
       mvList: [],
       //搜索结果总数
-      songCount: 0,
+      songCount:'',
       type: 1,
     };
   },
   watch: {
+  
     activeIndex() {
       this.page = 1;
-
       switch (this.activeIndex) {
         case "songs":
           this.type = 1;
@@ -189,6 +188,10 @@ export default {
           }
         });
     },
+    search(){
+      this.$route.query.query,
+      this.songCount
+    }
   },
   created() {
     //搜索接口
@@ -252,15 +255,15 @@ export default {
       });
     },
 
-    //点击歌单详情id
-    toPlayList(id) {
-      this.$router.push(`/playlist?id=${id}`);
-    },
+    // //点击歌单详情id
+    // toPlayList(id) {
+    //   this.$router.push(`/playlist?id=${id}`);
+    // },
 
-    //去mv详情
-    toMv(id) {
-      this.$router.push(`/mv?id=${id}`);
-    },
+    // //去mv详情
+    // toMv(id) {
+    //   this.$router.push(`/mv?id=${id}`);
+    // },
 
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
@@ -317,7 +320,8 @@ export default {
 };
 </script>
 
-<style >
+<style>
+
 </style>
 
 

@@ -27,10 +27,11 @@
           <thead>
             <th></th>
             <th></th>
-            <th>音乐标题</th>
-            <th>歌手</th>
-            <th>专辑</th>
-            <th>时长</th>
+            <th class="phone-style">音乐标题</th>
+            <th class="other">歌手</th>
+            <th class="other">专辑</th>
+            <th class="other">时长</th>
+
           </thead>
           <tbody>
             <tr
@@ -45,7 +46,7 @@
                   <span class="el-icon-video-play" @click="play(item.id)" ></span>
                 </div>
               </td>
-              <td>
+              <td class="other">
                 <div class="song-wrap">
                   <div class="name-wrap">
                     <span>{{ item.name }}</span>
@@ -55,8 +56,8 @@
                 </div>
               </td>
               <td>{{ item.ar[0].name }}</td>
-              <td>{{ item.al.name }}</td>
-              <td>{{ item.dt }}</td>
+              <td class="other">{{ item.al.name }}</td>
+              <td class="other">{{ item.dt }}</td>
             </tr>
           </tbody>
         </table>
@@ -223,6 +224,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media only screen and (max-width:850px),
+only screen and (max-device-width:850px) and(min-device-width:500px){
+    .song-wrap{
+      display: none !important;
+    }
+    .other{
+      display: none !important;
+    }
+    .phone-style{
+      display: flex;
+      width: 70px !important;
+    }
+}
+
 .item {
   display: flex;
   margin-top: 20px;

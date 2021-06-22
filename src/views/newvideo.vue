@@ -33,16 +33,16 @@
             <span class="title" :class="{active:type=='全部'}" @click="type='全部'">全部</span>
           </li>
           <li class="tab">
-            <span class="title" :class="{active:type=='官方版'}" @click="type='官方版'">官方版</span>
+            <span class="title" :class="{active:type=='官方版'}" @click="type='官方版'">官方</span>
           </li>
           <li class="tab">
             <span class="title" :class="{active:type=='原声'}" @click="type='原声'">原声</span>
           </li>
           <li class="tab">
-            <span class="title" :class="{active:type=='现场版'}" @click="type='现场版'">现场版</span>
+            <span class="title" :class="{active:type=='现场版'}" @click="type='现场版'">现场</span>
           </li>
           <li class="tab">
-            <span class="title" :class="{active:type=='网易出品'}" @click="type='网易出品'">网易出品</span>
+            <span class="title" :class="{active:type=='网易出品'}" @click="type='网易出品'">网易</span>
           </li>
         </ul>
       </div>
@@ -51,7 +51,7 @@
         <ul class="tabs-wrap">
         <span>排序:</span>
           <li class="tab">
-            <span class="title" :class="{active:order=='上升最快'}" @click="order='上升最快'">上升最快</span>
+            <span class="title" :class="{active:order=='上升最快'}" @click="order='上升最快'">最快</span>
           </li>
           <li class="tab">
             <span class="title" :class="{active:order=='最热'}" @click="order='最热'">最热</span>
@@ -161,6 +161,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media only screen and (max-width:850px),
+only screen and (max-device-width:850px) and(min-device-width:500px){
+    span{
+      display: flex;
+      direction: columns;
+      align-items: center;
+    }
+}
+
+
 .tabs-wrap {
     display: flex;
     margin: 20px;

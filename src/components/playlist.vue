@@ -141,6 +141,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media only screen and (max-width:850px),
+only screen and (max-device-width:850px) and(min-device-width:500px){
+    .boutique{
+      display: none !important;
+    }
+}
+
+
+
 .list-items {
   display: flex;
   flex-wrap: wrap;
