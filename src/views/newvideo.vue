@@ -170,7 +170,9 @@ only screen and (max-device-width:850px) and(min-device-width:500px){
     }
 }
 
-
+li{
+  list-style: none;
+}
 .tabs-wrap {
     display: flex;
     margin: 20px;

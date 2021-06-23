@@ -2,7 +2,8 @@
   <div class="result-container">
     <div class="title-wrap">
       <!-- 标题 -->
-      <h2 class="title">{{ $route.query.query }}</h2>
+      <h2 class="title" >{{ key }}</h2>
+      <!-- <h2>{{this.$route.query.query}}</h2> -->
       <span class="sub-title">找到{{ songCount }}个结果</span>
     </div>
     <el-tabs v-model="activeIndex">
@@ -97,6 +98,8 @@
       :limit="limit"
     >
     </el-pagination>
+
+    
   </div>
  
 </template>
@@ -118,10 +121,56 @@ export default {
       //搜索结果总数
       songCount:'',
       type: 1,
+      key:''
     };
   },
+//  porps:['keywords'],
+// mounted () {
+// this.search,
+// this.$route.query.query
+// },
   watch: {
-  
+    key(){
+        axios.get(" https://autumnfish.cn/search",{
+        params: {
+          keywords: this.$route.query.query,
+          limit: this.limit,
+          offset: (this.page - 1) * this.limit,
+          type: 1,
+        },
+      }).then(
+        (res) => {
+          console.log(res);
+          //   res.data.hasOwnProperty('msg')
+          if (res == '') {
+            this.$message({
+              message: "搜索内容异常！",
+              type: "warning",
+            });
+          } else {
+            this.songList = res.data.result.songs;
+            this.songCount = res.data.result.songCount;
+            this.total = res.data.result.songCount;
+            for (let i = 0; i < this.songList.length; i++) {
+              let duration = this.songList[i].duration;
+              let min = parseInt(duration / 1000 / 60);
+              if (min < 10) {
+                min = "0" + min;
+              }
+              let sec = parseInt((duration / 1000) % 60);
+              if (sec < 10) {
+                sec = "0" + sec;
+              }
+              //console.log(min+" "+sec)
+              this.songList[i].duration = `${min}:${sec}`;
+            }
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    },
     activeIndex() {
       this.page = 1;
       switch (this.activeIndex) {
@@ -188,14 +237,14 @@ export default {
           }
         });
     },
-    search(){
-      this.$route.query.query,
-      this.songCount
-    }
+    // search(){
+    //   this.$route.query.query,
+    //   this.songCount
+    // }
   },
   created() {
-    //搜索接口
-    this.search();
+    this.search;
+    this.key =this.$route.query.query;
   },
   methods: {
     //搜索

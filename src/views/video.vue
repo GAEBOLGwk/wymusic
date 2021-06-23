@@ -71,21 +71,21 @@
               <div class="date">{{item.time | dateFormat }}</div>
             </div>
           </div>
-        
-        
         </div>
       </div>
-      <!-- 分页器 -->
-      <el-pagination
-        @current-change="handleCurrentChange"
-        background
-        layout="prev, pager, next"
-        :total="total"
-        :current-page="page"
-        :page-size="10"
-        :limit="limit"
-      >
-      </el-pagination>
+      <div class="phone">
+            <!-- 分页器 -->
+        <el-pagination
+          @current-change="handleCurrentChange"
+          background
+          layout="prev, pager, next"
+          :total="total"
+          :current-page="page"
+          :page-size="10"
+          :limit="limit"
+        >
+        </el-pagination>
+      </div>
     </div>
     <div class="mv-recommend">
       <h3 class="title">相关推荐</h3>
@@ -238,6 +238,29 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width:850px),
+only screen and (max-device-width:850px) and(min-device-width:500px){
+  .video-wrap{
+    width:220px !important;
+    height:130px !important;
+  }
+  .mv-recommend{
+    display: none;
+  }
+  .comment-wrap{
+    display: none;
+  }
+  .info-wrap{
+    display: none !important;
+  }
+  .phone{
+    display: none !important;
+  }
+
+}
+
+
+
     .mv-container{
     display: flex;
     justify-content: space-between;

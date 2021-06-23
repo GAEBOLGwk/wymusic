@@ -36,10 +36,14 @@ export default {
       // this.$router.push({
       //   path: "/result",
       //   params: {
-      //     query: this.inputValue,
+      //     key: this.inputValue,
       //   },
       // });
+      // path 和params不能同时出现
+      // 携带参数跳转路由
+      // this.$parent.keywords = this.inputValue
       this.$router.push('/result?query='+this.inputValue)
+      
       // 清空搜索框内容
       this.inputValue = "";
     },

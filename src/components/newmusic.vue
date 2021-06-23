@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {get} from "@/utils/axios";
+import axios from "axios"
 export default {
     data(){
         return{
@@ -24,13 +24,13 @@ export default {
         }
     },
     created(){
-        get("personalized/newsong").then((res) => {
+        axios.get("https://autumnfish.cn/personalized/newsong").then((res) => {
         this.songs = res.data.result;
     });
     },
     methods: {
           play(id) {
-     get('song/url',{id}).then(res => {
+     axios.get('https://autumnfish.cn/song/url',{params:{id}}).then(res => {
           let url = res.data.data[0].url
           // this.$emit('play', this.playUrl)
           console.log(url);

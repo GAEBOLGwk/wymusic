@@ -22,7 +22,20 @@
     </div>
     
     <!-- 最新音乐 -->
-    <newmusic/>
+    <div class="new">
+      <h3 class="title">最新音乐</h3>
+      <div class="items">
+        <div class="item" v-for="(item, index) in songs" :key="index" @click="play(item.id)">
+          <div class="img-wrap">
+            <img :src="item.picUrl" alt="" />
+            <div class="song-name">
+              <span>{{ item.name }}</span>
+              <span class="f">{{ item.song.artists[0].name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- 推荐MV -->
     <div class="mv">
       <h3 class="title">推荐MV</h3>
@@ -39,13 +52,12 @@
 </template>
 
 <script>
-import {get} from "@/utils/axios";
 import axios from "axios"
-import newmusic from '@/components/newmusic'
+// import newmusic from '@/components/newmusic'
 export default {
-  components:{
-      newmusic,
-  },
+  // components:{
+  //     newmusic,
+  // },
 
   data() {
     return {
@@ -58,19 +70,19 @@ export default {
 
   created() {
     //轮播图
-    get("banner",{}).then((res) => {
+    axios.get(" https://autumnfish.cn/banner").then((res) => {
       this.banners = res.data.banners;
     });
     // 推荐歌单
-    get("personalized", {limit:10}).then((res) => {
+    axios.get(" https://autumnfish.cn/personalized", {params:{ limit: 10 }}).then((res) => {
         this.list = res.data.result;
       });
     // 最新音乐
-    get("personalized/newsong").then((res) => {
+    axios.get(" https://autumnfish.cn/personalized/newsong").then((res) => {
       this.songs = res.data.result;
     });
     // 最新MV
-    get("personalized/mv").then((res) => {
+    axios.get(" https://autumnfish.cn/personalized/mv").then((res) => {
       this.mv = res.data.result;
     });
   },
@@ -184,6 +196,53 @@ only screen and (max-device-width:850px) and(min-device-width:500px){
 .item :hover .desc {
   opacity: 1;
   display: block;
+}
+.new {
+  margin-bottom: 40px;
+  .title {
+  font-weight: normal;
+  margin: 25px 0 25px 0;
+  padding-left: 8px;
+}
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 500px;
+    .item {
+      height: 100px;
+      width: 50%;
+      position: relative;
+      display: flex;
+      align-content: center;
+      &:hover {
+        background: #f5f5f5;
+      }
+      .img-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .song-name {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 10px;
+        height: 100%;
+        .f {
+          font-size: 16px;
+          color: #808080;
+          opacity: 0.5;
+        }
+      }
+      img {
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .mv {
